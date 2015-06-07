@@ -1,0 +1,36 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" href="{% static 'src/lib/bootstrap/dist/css/bootstrap.min.css' %}"></script>
+    <link rel="stylesheet" href="{% static 'src/assets/css/main.css' %}">
+  </head>
+
+  <body>
+    <div class="container">
+        <h2> {{ title }} <small>{{ subtext }}</small></h2>
+    </div>
+
+    <div class="container">
+      <ui-view></ui-view>
+    </div>
+
+    <!-- Lib -->
+    <script src="{% static 'src/lib/angular/angular.min.js' %}"></script>
+    <script src="{% static 'src/lib/angular-ui-router/release/angular-ui-router.min.js' %}"></script>
+    <script src="{% static 'src/lib/jquery/dist/jquery.min.js' %}"></script>    
+    <script src="{% static 'src/lib/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+    <!-- App -->
+    <script src="{% static 'src/app/app.module.js' %}"></script>
+    <script src="{% static 'src/app/app.config.js' %}"></script>
+
+    <!-- Services -->
+
+    <!-- Directives -->
+
+    <!-- Controllers -->
+  </body>
+</html>

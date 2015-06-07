@@ -1,1 +1,8 @@
-app.module.js
+(function(){
+    'use strict';
+
+    angular
+        .module('ngDjango', [
+            'ui.router'
+        ]);
+}());
