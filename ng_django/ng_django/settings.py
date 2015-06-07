@@ -15,10 +15,21 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
+def get_env_setting(setting):
+    """ Get the environment setting or return exception. """
+    try:
+        return os.environ[setting]
+    except KeyError:
+        error_msg = 'Set the %s env variable' % setting
+        raise ImproperlyConfigured(error_msg)
+
+# Secret key configuration
+# https://docs.djangoproject.com/en/1.7/ref/settings/#secret-key
+
+SECRET_KEY = get_env_setting('NG_DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -68,10 +79,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ng_django.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -85,7 +94,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
