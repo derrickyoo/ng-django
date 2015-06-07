@@ -1,7 +1,7 @@
 {% load staticfiles %}
 
 <!DOCTYPE html>
-<html>
+<html ng-app="ngDjango">
 
   <head>
     <link rel="stylesheet" href="{% static 'src/lib/bootstrap/dist/css/bootstrap.min.css' %}"></script>
@@ -14,11 +14,12 @@
     </div>
 
     <div class="container">
-      <ui-view></ui-view>
+      <div ui-view></div>
     </div>
 
     <!-- Lib -->
     <script src="{% static 'src/lib/angular/angular.min.js' %}"></script>
+    <script src="{% static 'src/lib/angular-resource/angular-resource.min.js' %}"></script>
     <script src="{% static 'src/lib/angular-ui-router/release/angular-ui-router.min.js' %}"></script>
     <script src="{% static 'src/lib/jquery/dist/jquery.min.js' %}"></script>    
     <script src="{% static 'src/lib/bootstrap/dist/js/bootstrap.min.js' %}"></script>

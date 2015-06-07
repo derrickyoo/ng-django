@@ -3,6 +3,7 @@
 
     angular
         .module('ngDjango', [
+            'ngResource',
             'ui.router'
         ]);
 }());
