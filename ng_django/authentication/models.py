@@ -1,5 +1,44 @@
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
+
+
+class AccountManager(BaseUserManager):
+
+    """Manager class required when substituding User model."""
+
+    def create_user(self, email, password=None, **kwargs):
+        """Create user."""
+        # Email is required
+        if not email:
+            raise ValueError('Users must have a valid email address.')
+
+        # Username is required
+        if not kwargs.get('username'):
+            raise ValueError('Users must have a valid username.')
+
+        # Define model attribote on the Account Manager class
+        # self.model refers to the model attribut of BaseUserManager
+        # Defaults to settings.AUTH_USER_MODEL, which needs to be changed
+        # to point to the Account class in the settings.py file
+        account = self.model(
+            email=self.normalize_email(email), username=kwargs.get('username')
+        )
+
+        account.set_password(password)
+        account.save()
+
+        return account
+
+    def create_super_user(self, email, password, **kwargs):
+        """Create super user."""
+        # Use create_user to handle account creation
+        account = self.create_user(email, password, **kwargs)
+
+        # Use create_super_user to handle turning Account into a superuser.
+        account.is_admin = True
+        account.save()
+
+        return account
 
 
 class Account(AbstractBaseUser):
